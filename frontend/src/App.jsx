@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "./App.css";
 
 function App() {
   const [status, setStatus] = useState("Connecting to backend...");
 
   useEffect(() => {
-  fetch("https://mern-cloud-backend.onrender.com/api/status")
-    .then((response) => response.json())
-    .then((data) => {
-      setStatus(data.message);
-    })
-    .catch(() => {
-      setStatus("Backend connection failed");
-    });
-}, []);
+    fetch("https://mern-cloud-backend.onrender.com/api/status")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus(data.message);
+      })
       .catch(() => {
         setStatus("Backend connection failed");
       });
