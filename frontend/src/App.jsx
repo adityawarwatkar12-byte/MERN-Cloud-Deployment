@@ -6,11 +6,15 @@ function App() {
   const [status, setStatus] = useState("Connecting to backend...");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/status")
-      .then((response) => {
-        setStatus(response.data.message);
-      })
+  fetch("https://mern-cloud-backend.onrender.com/api/status")
+    .then((response) => response.json())
+    .then((data) => {
+      setStatus(data.message);
+    })
+    .catch(() => {
+      setStatus("Backend connection failed");
+    });
+}, []);
       .catch(() => {
         setStatus("Backend connection failed");
       });
